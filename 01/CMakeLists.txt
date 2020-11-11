@@ -9,10 +9,16 @@ set(BASE_SOURCE_FILES )
 set(MAIN_SOURCE_FILES main.c)
 set(BASE_TEST_SOURCE_FILES)
 set(TESTS_LIBRARIES)
+set(DEPENDENCY_LIBRARIES)
+
+if (CMAKE_COMPILER_IS_GNUCXX)
+	list(APPEND DEPENDENCY_LIBRARIES m)
+endif ()
 
 foreach(TASK ${TASKS})
 	add_library(${PROJECT_NAME}_${TASK}_Library STATIC ${TASK}.c ${BASE_SOURCE_FILES} ${BASE_HEADER_FILES})
 	target_compile_definitions(${PROJECT_NAME}_${TASK}_Library PRIVATE TASK=${TASK})
+	target_link_libraries(${PROJECT_NAME}_${TASK}_Library PUBLIC ${DEPENDENCY_LIBRARIES})
 	list(APPEND TESTS_LIBRARIES ${PROJECT_NAME}_${TASK}_Library)
 
 	add_executable(${PROJECT_NAME}_${TASK} ${BASE_SOURCE_FILES} ${MAIN_SOURCE_FILES} ${BASE_HEADER_FILES})
@@ -31,4 +37,3 @@ add_custom_command(
 )
 add_custom_target(${PROJECT_NAME}_Tests_Generated DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/generated_tests.cpp)
 add_dependencies(${PROJECT_NAME}_Tests ${PROJECT_NAME}_Tests_Generated)
-
