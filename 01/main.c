@@ -22,6 +22,7 @@ main(int argc, char *argv[]) {
     }
     fprintf(stdout, "Задание               : %s\n", STR(TASK));
     fprintf(stdout, "Начальное значение X  : %f\n", x);
+    fprintf(stdout, "Приближение EPS       : %f\n", eps);
     calculated = CALL(task)(x, eps);
     fprintf(stdout, "Результат самописный  : %f\n", calculated);
     calculated = CALL(base)(x, eps);

@@ -1,0 +1,78 @@
+language: c
+sudo: required
+
+env:
+  global:
+    # For tag builds we do not have the base branch in TRAVIS_BRANCH, therefore store it in BRANCH_FOR_TAG
+    - BRANCH_FOR_TAG=$(git ls-remote origin | sed -n "\|$TRAVIS_COMMIT\s\+refs/heads/|{s///p}")
+
+
+dist: trusty
+
+# Make sure we have the git tags. Travis uses shallow checkout where git describe does not work
+git:
+  depth: false
+
+matrix:
+  fast_finish: true
+  include:
+#
+# gcc-4.8 (trusty) full host and cross build with tests:
+# doc, cert, cross-mingw32, cross-mingw64, cross-linux32, cross-raspi, linux64,
+# amalgamated, shared, multithread, encryption, discovery, json, test-ns0-full, test-ns0-minimal
+    - os: linux
+      compiler: gcc-4.8
+      addons:
+        apt:
+          sources:
+            # see https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
+            - ubuntu-toolchain-r-test
+          packages:
+            - mingw-w64
+            - gcc-mingw-w64-i686
+            - gcc-mingw-w64-x86-64
+            - binutils-mingw-w64-i686
+            - g++-multilib
+            - cmake
+            - valgrind
+      env:
+        - MINGW=true
+#
+# gcc-8 full host build with tests:
+# doc, cert, linux64,
+# amalgamated, shared, multithread, encryption, discovery, json, test-ns0-full, test-ns0-minimal
+    - os: linux
+      compiler: gcc-8
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-8
+            - gcc-8-multilib
+            - valgrind
+#
+# clang-6 full host build with tests:
+# doc, cert, linux64,
+# amalgamated, shared, multithread, encryption, discovery, json, test-ns0-full, test-ns0-minimal
+    - os: linux
+      compiler: clang-6.0
+      addons:
+        apt:
+          sources:
+            - llvm-toolchain-trusty-6.0
+            - ubuntu-toolchain-r-test
+          packages:
+            - clang-6.0
+            - clang-tidy-6.0
+            - valgrind
+  allow_failures:
+    - env:
+        - CLANG_FORMAT=true
+    - env:
+        - SONAR=true
+
+cache:
+  apt: true
+  directories:
+    - $HOME/install

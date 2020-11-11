@@ -9,10 +9,10 @@ double CALL(task)(double x, double eps) {
     return x * eps;
 }
 
-double CALL(base)(double x, double eps) {
-    return x * eps;
+double CALL(base)(double x, double _) {
+    return cos(x / 3) + x - pow(x, 2);
 }
 
 double CALL(initiate_x)() {
-    return 1;
+    return -1;
 }

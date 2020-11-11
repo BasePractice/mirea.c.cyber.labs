@@ -2,6 +2,15 @@
 
 Решение всех вариантов лабораторных работ для языка Си
 
+== Сборка
+
+image::https://img.shields.io/travis/BasePractice/mirea.c.cyber.labs/master.svg[]
+
+== Качество кода
+
+image::https://codecov.io/gh/BasePractice/mirea.c.cyber.labs/branch/master/graph/badge.svg[]
+
+
 == Структура
 
 В директории `00` располагаются дополнительные файлы зависимостей. Файл `tests_main.cpp` основной файл запуска тестов.
