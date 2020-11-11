@@ -30,3 +30,10 @@
 
 == Решения
 . link:01/README.adoc[Задание №1]. Оригинал задания link:Задания/Lab_C_1_series.pdf[pdf]
+. link:02/README.adoc[Задание №2]. Оригинал задания link:Задания/Lab_C_2_array.pdf[pdf]
+. link:03/README.adoc[Задание №3]. Оригинал задания link:Задания/Lab_C_3_strings.pdf[pdf]
+. link:04/README.adoc[Задание №4]. Оригинал задания link:Задания/Lab_C_4_Pointers.pdf[pdf]
+. link:05/README.adoc[Задание №5]. Оригинал задания link:Задания/Lab_C_5_Sorting_Read-Write-Files.pdf[pdf]
+. link:06/README.adoc[Задание №6]. Оригинал задания link:Задания/Lab_С_6_Multidimensional_arrays.pdf[pdf]
+. link:07/README.adoc[Задание №7]. Оригинал задания link:Задания/Lab_C_7_List.pdf[pdf]
+. link:09/README.adoc[Задание №9]. Оригинал задания link:Задания/Lab_C_9_Vararg.pdf[pdf]
