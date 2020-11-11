@@ -35,6 +35,7 @@ else ()
     set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -fPIC ")
 endif ()
 
+enable_testing()
 include_directories(00)
 
 add_subdirectory(01)

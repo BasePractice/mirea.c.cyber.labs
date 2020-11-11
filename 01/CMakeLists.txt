@@ -37,3 +37,7 @@ add_custom_command(
 )
 add_custom_target(${PROJECT_NAME}_Tests_Generated DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/generated_tests.cpp)
 add_dependencies(${PROJECT_NAME}_Tests ${PROJECT_NAME}_Tests_Generated)
+
+#add_test(${PROJECT_NAME}_Test ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_Tests)
+#set_tests_properties(${PROJECT_NAME}_Test PROPERTIES
+#		FAIL_REGULAR_EXPRESSION "FAILED")
