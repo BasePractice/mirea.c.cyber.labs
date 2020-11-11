@@ -24,6 +24,12 @@ foreach(TASK ${TASKS})
 	add_executable(${PROJECT_NAME}_${TASK} ${BASE_SOURCE_FILES} ${MAIN_SOURCE_FILES} ${BASE_HEADER_FILES})
 	target_compile_definitions(${PROJECT_NAME}_${TASK} PRIVATE TASK=${TASK})
 	target_link_libraries(${PROJECT_NAME}_${TASK} ${PROJECT_NAME}_${TASK}_Library)
+
+	add_test(${PROJECT_NAME}_Test${TASK} ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_${TASK})
+	set_tests_properties(${PROJECT_NAME}_Test01 PROPERTIES
+			FAIL_REGULAR_EXPRESSION "FAILED"
+			PASS_REGULAR_EXPRESSION "PASSED"
+			)
 endforeach()
 
 add_executable(${PROJECT_NAME}_Tests ${CMAKE_CURRENT_BINARY_DIR}/generated_tests.cpp ${BASE_TEST_SOURCE_FILES} ${BASE_HEADER_FILES})
@@ -37,7 +43,3 @@ add_custom_command(
 )
 add_custom_target(${PROJECT_NAME}_Tests_Generated DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/generated_tests.cpp)
 add_dependencies(${PROJECT_NAME}_Tests ${PROJECT_NAME}_Tests_Generated)
-
-#add_test(${PROJECT_NAME}_Test ${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}_Tests)
-#set_tests_properties(${PROJECT_NAME}_Test PROPERTIES
-#		FAIL_REGULAR_EXPRESSION "FAILED")

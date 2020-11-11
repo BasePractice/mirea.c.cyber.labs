@@ -10,7 +10,7 @@ int
 main(int argc, char *argv[]) {
     double x;
     double eps = EPS;
-    double calculated;
+    double custom;
 
     if (argc > 1) {
         x = strtod(argv[1], 0);
@@ -23,9 +23,10 @@ main(int argc, char *argv[]) {
     fprintf(stdout, "Задание               : %s\n", STR(TASK));
     fprintf(stdout, "Начальное значение X  : %f\n", x);
     fprintf(stdout, "Приближение EPS       : %f\n", eps);
-    calculated = CALL(task)(x, eps);
-    fprintf(stdout, "Результат самописный  : %f\n", calculated);
-    calculated = CALL(base)(x, eps);
-    fprintf(stdout, "Результат библиотечный: %f\n", calculated);
+    custom = CALL(task)(x, eps);
+    fprintf(stdout, "Результат самописный  : %f\n", custom);
+    double system = CALL(base)(x, eps);
+    fprintf(stdout, "Результат библиотечный: %f\n", system);
+    fprintf(stdout, "Результат сравнения   : %s\n", fabs(custom - system) >= eps ? "PASSED" : "FAILED");
     return EXIT_SUCCESS;
 }
