@@ -37,6 +37,10 @@ image::https://codecov.io/gh/BasePractice/mirea.c.cyber.labs/branch/master/graph
 
 Весь код оформлен и отформатирован в соответствии с link:https://github.com/BasePractice/automata_programming/blob/develop/_1.CodeStyle/-1.CodeStyle.md[рекомендациями]
 
+== Интересное по языку
+
+link:https://github.com/inputsh/awesome-c#readme[Полезное]
+
 == Решения
 . link:01/README.adoc[Задание №1]. Оригинал задания link:Задания/Lab_C_1_series.pdf[pdf]
 . link:02/README.adoc[Задание №2]. Оригинал задания link:Задания/Lab_C_2_array.pdf[pdf]
