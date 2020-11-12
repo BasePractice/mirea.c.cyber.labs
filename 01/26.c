@@ -1,16 +1,16 @@
 #include "base.h"
 
 /**
- * y = sin(x^3/2) + x
+ * y = cos(x^2/5) + 2 * x
  * x = 1
  */
 
 double CALL(task)(double x, double eps, bool *divergent) {
-    return x_sin(pow(x, 3) / 2, eps, divergent) + x;
+    return x_cos(pow(x, 2) / 5, eps, divergent) + 2 * x;
 }
 
 double CALL(base)(double x, double _) {
-    return sin(pow(x, 3) / 2) + x;
+    return cos(pow(x, 2) / 5) + 2 * x;
 }
 
 double CALL(initiate_x)() {

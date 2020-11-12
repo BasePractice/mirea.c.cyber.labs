@@ -1,18 +1,18 @@
 #include "base.h"
 
 /**
- * y = sin(x^3/2) + x
- * x = 1
+ * y = exp(2 * x^3) - x + 1
+ * x = 6 / 7
  */
 
 double CALL(task)(double x, double eps, bool *divergent) {
-    return x_sin(pow(x, 3) / 2, eps, divergent) + x;
+    return x_exp(2 * pow(x, 3), eps, divergent) - x + 1;
 }
 
 double CALL(base)(double x, double _) {
-    return sin(pow(x, 3) / 2) + x;
+    return exp(2 * pow(x, 3)) - x + 1;
 }
 
 double CALL(initiate_x)() {
-    return 1;
+    return 6. / 7.;
 }

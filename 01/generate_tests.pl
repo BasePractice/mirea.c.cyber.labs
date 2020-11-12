@@ -7,22 +7,26 @@ sub generate_test {
     $id = sprintf("%02d", $id);
     return qq|
        extern "C" {
-        double DIRECT_CALL($id, task)(double x, double eps);
+        double DIRECT_CALL($id, task)(double x, double eps, bool *divergent);
         double DIRECT_CALL($id, base)(double x, double eps);
         double DIRECT_CALL($id, initiate_x)();
        }
 
        TEST_CASE("Task.$id", "[Lab.01]") {
+        bool divergent = false;
         double x = DIRECT_CALL($id, initiate_x)();
         double eps = EPS;
-        double custom = DIRECT_CALL($id, task)(x, eps);
-        REQUIRE(x);
+        double custom = DIRECT_CALL($id, task)(x, eps, &divergent);
         REQUIRE(eps);
         REQUIRE(custom);
         INFO("Результат самописный  X = " << x << " равен " << custom);
         double system = DIRECT_CALL($id, base)(x, eps);
         INFO("Результат стандартный X = " << x << " равен " << system);
-        REQUIRE( abs(custom - system) <= eps );
+        if (divergent) {
+          WARN("Ряд расходится");
+        } else {
+          REQUIRE( abs(custom - system) <= eps );
+        }
        }
 |;
 }
@@ -31,7 +35,7 @@ my $content = qq|#include <catch2/catch.hpp>
 #include "base.h"
 
 |;
-for (my $i = 1; $i <= 2; $i++) {
+for (my $i = 1; $i <= 36; $i++) {
     $content .= &generate_test($i);
 }
 
