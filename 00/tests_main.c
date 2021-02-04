@@ -3,9 +3,10 @@
 #define _CRTDBG_MAP_ALLOC
 #include <crtdbg.h>
 #endif
-#include <catch2/catch.hpp>
+#include <stdlib.h>
+#include <check.h>
 
-
+extern Suite *main_suite();
 
 int main( int argc, char* argv[] ) {
     int ret;
@@ -22,9 +23,18 @@ int main( int argc, char* argv[] ) {
     _CrtSetReportFile( _CRT_WARN, _CRTDBG_FILE_STDERR );
     _CrtMemCheckpoint(&_checkpoint_start);
 #endif
-    /**NOTICE: Исключаем влияние Catch2 на анализ памяти */
+    /**NOTICE: Исключаем влияние Check на анализ памяти */
     {
-        ret = Catch::Session().run( argc, argv );
+        Suite *suite;
+        SRunner *runner;
+        int failed;
+
+        suite = main_suite();
+        runner = srunner_create(suite);
+        srunner_run_all(runner, CK_NORMAL);
+        failed = srunner_ntests_failed(runner);
+        srunner_free(runner);
+        ret = failed == 0 ? EXIT_SUCCESS : EXIT_FAILURE;
     }
 #if defined(_MSC_VER) && defined(MEMORY_LEAK_DETECT)
     _CrtMemCheckpoint(&_checkpoint_end);

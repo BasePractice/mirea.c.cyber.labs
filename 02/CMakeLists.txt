@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.2.1)
-project(01.Task)
+project(02.Task)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(.)
 
 set(BASE_HEADER_FILES base.h)
-set(BASE_SOURCE_FILES )
+set(BASE_SOURCE_FILES base.c)
 set(MAIN_SOURCE_FILES main.c)
 set(BASE_TEST_SOURCE_FILES)
 set(TESTS_LIBRARIES)
@@ -29,7 +29,9 @@ foreach(TASK ${TASKS})
 endforeach()
 
 add_executable(${PROJECT_NAME}_Tests ${CMAKE_CURRENT_BINARY_DIR}/generated_tests.c ${BASE_TEST_SOURCE_FILES} ${BASE_HEADER_FILES})
+add_executable(${PROJECT_NAME}_BaseTests base_tests.c ${BASE_TEST_SOURCE_FILES} ${BASE_HEADER_FILES})
 target_link_libraries(${PROJECT_NAME}_Tests Test::Main ${TESTS_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}_BaseTests Test::Main ${TESTS_LIBRARIES})
 
 add_custom_command(
 		OUTPUT

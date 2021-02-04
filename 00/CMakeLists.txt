@@ -17,5 +17,6 @@ target_compile_definitions(${PROJECT_NAME}_Library PUBLIC BASE_MACRO)
 target_link_libraries(${PROJECT_NAME}_Library PUBLIC ${DEPENDENCY_LIBRARIES})
 add_library(Base::Math ALIAS ${PROJECT_NAME}_Library)
 
-add_library(${PROJECT_NAME}_TestMain STATIC catch2/catch.hpp tests_main.cpp)
+add_library(${PROJECT_NAME}_TestMain STATIC tests_main.c)
 add_library(Test::Main ALIAS ${PROJECT_NAME}_TestMain)
+target_link_libraries(${PROJECT_NAME}_TestMain PUBLIC ${CHECK_LIBRARIES})
