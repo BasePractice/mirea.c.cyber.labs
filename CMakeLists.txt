@@ -1,7 +1,16 @@
 ﻿cmake_minimum_required(VERSION 3.2.1)
 project(mirea_c_cyber_labs)
 
-find_package(Perl)
+set(PERL_POSSIBLE_BIN_PATHS
+        "C:/msys64/usr/bin"
+        "D:/msys64/usr/bin"
+        "/usr/bin"
+        "/usr/local/bin")
+find_program(PERL_EXECUTABLE
+        NAMES perl
+        PATHS ${PERL_POSSIBLE_BIN_PATHS}
+        )
+
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 set(CMAKE_C_STANDARD 90)
@@ -13,10 +22,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Check REQUIRED)
 
 set(TASKS "01;02;03;04;05;06;07;08;09;10;11;12;13;14;15;16;17;18;19;20;21;22;23;24;25;26;27;28;29;30;31;32;33;34;35;36")
-
-if (NOT PERL_FOUND)
-    set(PERL_EXECUTABLE D:/msys64/usr/bin/perl)
-endif ()
 
 if (MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
@@ -44,6 +49,7 @@ endif ()
 
 enable_testing()
 include_directories(00)
+include_directories(${CHECK_INCLUDE_DIRS})
 
 add_subdirectory(00)
 add_subdirectory(01)

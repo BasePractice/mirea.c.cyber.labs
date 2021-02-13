@@ -41,6 +41,7 @@ main(int argc, char *argv[]) {
         }
     }
     fprintf(stdout, "\n");
+    fprintf(stdout, "Результат             : PASSED\n");
     destroy_array(array);
     destroy_array(result);
     return EXIT_SUCCESS;
