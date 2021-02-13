@@ -9,7 +9,7 @@ set(BASE_SOURCE_FILES base_math.c)
 set(DEPENDENCY_LIBRARIES)
 
 if (UNIX)
-	list(APPEND DEPENDENCY_LIBRARIES m dl)
+	list(APPEND DEPENDENCY_LIBRARIES m dl pthread)
 endif ()
 
 add_library(${PROJECT_NAME}_Library STATIC ${BASE_SOURCE_FILES} ${BASE_HEADER_FILES})
