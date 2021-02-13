@@ -4,7 +4,7 @@
 
 == Сборка
 
-image::https://img.shields.io/travis/BasePractice/mirea.c.cyber.labs/master.svg[]
+image::https://github.com/BasePractice/mirea.c.cyber.labs/workflows/CMake/badge.svg[]
 
 == Качество кода
 
