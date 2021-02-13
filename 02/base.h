@@ -1,6 +1,7 @@
 #ifndef MIREA_C_CYBER_LABS_BASE_H
 #define MIREA_C_CYBER_LABS_BASE_H
 
+#include <stddef.h>
 #include <stdbool.h>
 #include <base_macro.h>
 #include <base_math.h>

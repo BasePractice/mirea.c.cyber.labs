@@ -7,7 +7,7 @@ env:
 
 jobs:
   job:
-    name: ${{ matrix.os }}-hosted-basic
+    name: ${{ matrix.os }}-mirea-cyber-labs
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
