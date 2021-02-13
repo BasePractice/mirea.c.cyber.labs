@@ -49,7 +49,7 @@ endif ()
 
 enable_testing()
 include_directories(00)
-include_directories(${CHECK_INCLUDE_DIRS})
+include_directories(${CHECK_INCLUDE_DIR})
 
 add_subdirectory(00)
 add_subdirectory(01)
