@@ -4,7 +4,13 @@
  *
  */
 int* CALL(task)(const int *array, size_t size, int *result_size) {
-    return 0;
+    int *elements = 0, elements_size = 0, n;
+
+    for (n = 0; n < size; ++n) {
+
+    }
+    (*result_size) = elements_size;
+    return elements;
 }
 
 int* CALL(generate_array)(size_t *l_size) {
