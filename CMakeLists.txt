@@ -42,16 +42,26 @@ elseif (CMAKE_COMPILER_IS_GNUCXX)
     set(CMAKE_CFLAGS "${CMAKE_CFLAGS} -pedantic -Wp,-w -msse -msse2 -msse3 -fPIC -Wunused-result ")
 else ()
     set(CMAKE_CFLAGS "${CMAKE_CFLAGS} -std=c90 -pedantic -Wp,-w -fPIC ")
-    set(CMAKE_LINK_LIBRARY_FLAG "${CMAKE_LINK_LIBRARY_FLAG} -Wl,--no-relax -fPIC ")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--no-relax -fPIC ")
-    set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -Wl,--no-relax -fPIC ")
+    set(CMAKE_LINK_LIBRARY_FLAG "${CMAKE_LINK_LIBRARY_FLAG} -fPIC ")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fPIC ")
+    set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -fPIC ")
 endif ()
 
 enable_testing()
 include_directories(00)
+
+#FIXME: For MocOSX, check library install with brew. Fnd this installation not automatic detected libraries and include directories
+if (APPLE)
+    set(CHECK_LIBRARIES /usr/local/lib/libcheck.a)
+    set(CHECK_INCLUDE_DIR /usr/local/include)
+elseif (UNIX)
+    list(APPEND DEPENDENCY_LIBRARIES m dl pthread rt)
+endif ()
+
 include_directories(${CHECK_INCLUDE_DIR})
 
 add_subdirectory(00)
 add_subdirectory(01)
 add_subdirectory(02)
+add_subdirectory(03)
 
