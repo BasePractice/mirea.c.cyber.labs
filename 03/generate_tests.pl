@@ -16,10 +16,11 @@ sub generate_test {
         char *result;
 
         DIRECT_CALL($id, argument_create)(&args);
-        ck_assert(0 != args.text);
-        result = DIRECT_CALL($id, task)(&args);
-        ck_assert(0 != result);
-        ck_assert(args.result == result);
+        if (0 != args.text) {
+           result = DIRECT_CALL($id, task)(&args);
+            ck_assert(0 != result);
+            ck_assert_str_eq(args.result, result);
+        }
         argument_destroy(&args);
     }
     END_TEST

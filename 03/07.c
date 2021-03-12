@@ -75,7 +75,7 @@ void CALL(argument_create)(struct Argument *args) {
     args->text_size = 1;
     args->text = (char **) malloc(1 * sizeof(char *));
     args->text[0] = strdup("000000001");
-    args->result = strdup("0");
+    args->result = strdup("8");
 }
 
 void CALL(argument_create_argv)(struct Argument *args, int argc, char **argv) {
